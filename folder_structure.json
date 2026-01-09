@@ -1,0 +1,191 @@
+{
+    "name": "AgroConnect",
+    "type": "folder",
+    "children": [
+        {
+            "name": "Controller",
+            "type": "folder",
+            "children": [
+                {
+                    "name": ".gitkeep",
+                    "type": "file"
+                },
+                {
+                    "name": "admin",
+                    "type": "folder",
+                    "children": []
+                },
+                {
+                    "name": "AuthControl",
+                    "type": "folder",
+                    "children": []
+                },
+                {
+                    "name": "customer",
+                    "type": "folder",
+                    "children": []
+                },
+                {
+                    "name": "farmer",
+                    "type": "folder",
+                    "children": []
+                },
+                {
+                    "name": "transporter",
+                    "type": "folder",
+                    "children": []
+                }
+            ]
+        },
+        {
+            "name": "Docs",
+            "type": "folder",
+            "children": [
+                {
+                    "name": ".gitkeep",
+                    "type": "file"
+                },
+                {
+                    "name": "admin",
+                    "type": "folder",
+                    "children": []
+                },
+                {
+                    "name": "customer",
+                    "type": "folder",
+                    "children": []
+                },
+                {
+                    "name": "farmer",
+                    "type": "folder",
+                    "children": []
+                },
+                {
+                    "name": "transporter",
+                    "type": "folder",
+                    "children": []
+                }
+            ]
+        },
+        {
+            "name": "folder_structure.json",
+            "type": "file"
+        },
+        {
+            "name": "index.php",
+            "type": "file"
+        },
+        {
+            "name": "Model",
+            "type": "folder",
+            "children": [
+                {
+                    "name": ".gitkeep",
+                    "type": "file"
+                },
+                {
+                    "name": "admin",
+                    "type": "folder",
+                    "children": []
+                },
+                {
+                    "name": "customer",
+                    "type": "folder",
+                    "children": []
+                },
+                {
+                    "name": "farmer",
+                    "type": "folder",
+                    "children": []
+                },
+                {
+                    "name": "transporter",
+                    "type": "folder",
+                    "children": []
+                }
+            ]
+        },
+        {
+            "name": "README.md",
+            "type": "file"
+        },
+        {
+            "name": "st.py",
+            "type": "file"
+        },
+        {
+            "name": "View",
+            "type": "folder",
+            "children": [
+                {
+                    "name": ".gitkeep",
+                    "type": "file"
+                },
+                {
+                    "name": "admin",
+                    "type": "folder",
+                    "children": [
+                        {
+                            "name": "css",
+                            "type": "folder",
+                            "children": []
+                        },
+                        {
+                            "name": "js",
+                            "type": "folder",
+                            "children": []
+                        }
+                    ]
+                },
+                {
+                    "name": "customer",
+                    "type": "folder",
+                    "children": [
+                        {
+                            "name": "css",
+                            "type": "folder",
+                            "children": []
+                        },
+                        {
+                            "name": "js",
+                            "type": "folder",
+                            "children": []
+                        }
+                    ]
+                },
+                {
+                    "name": "farmer",
+                    "type": "folder",
+                    "children": [
+                        {
+                            "name": "css",
+                            "type": "folder",
+                            "children": []
+                        },
+                        {
+                            "name": "js",
+                            "type": "folder",
+                            "children": []
+                        }
+                    ]
+                },
+                {
+                    "name": "transporter",
+                    "type": "folder",
+                    "children": [
+                        {
+                            "name": "css",
+                            "type": "folder",
+                            "children": []
+                        },
+                        {
+                            "name": "js",
+                            "type": "folder",
+                            "children": []
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
