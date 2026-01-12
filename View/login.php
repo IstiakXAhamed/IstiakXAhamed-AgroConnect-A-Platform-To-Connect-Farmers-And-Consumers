@@ -1,3 +1,8 @@
+<?php
+// Remember Me cookie check
+$rememberedEmail = isset($_COOKIE['remember_email']) ? $_COOKIE['remember_email'] : '';
+$rememberedPass = isset($_COOKIE['remember_pass']) ? base64_decode($_COOKIE['remember_pass']) : '';
+?>
 <!DOCTYPE html>
 <html>
 
@@ -43,7 +48,10 @@
                     }
                 }
             }
-            xhr.send("email=" + encodeURIComponent(email) + "&password=" + encodeURIComponent(password));
+            // Remember checkbox value
+            let remember = document.getElementById("remember").checked;
+
+            xhr.send("email=" + email + "&password=" + password + "&remember=" + remember);
         }
     </script>
 </head>
@@ -71,18 +79,21 @@
 
                 <div class="form-group">
                     <label class="form-label">Email</label>
-                    <input type="email" id="email" name="email" class="form-input" placeholder="Enter your email">
+                    <input type="email" id="email" name="email" class="form-input" placeholder="Enter your email" value="<?php echo htmlspecialchars($rememberedEmail); ?>">
                     <span id="emailError" class="error-text"></span>
                 </div>
 
                 <div class="form-group">
                     <label class="form-label">Password</label>
-                    <input type="password" id="password" name="password" class="form-input" placeholder="Enter your password">
+                    <input type="password" id="password" name="password" class="form-input" placeholder="Enter your password" value="<?php echo htmlspecialchars($rememberedPass); ?>">
                     <span id="passwordError" class="error-text"></span>
                 </div>
 
-                <div class="forgot-password">
-                    <a href="forgotPassword.php" class="forgot-link">Forgot Password?</a>
+                <div class="form-options">
+                    <label class="remember-label">
+                        <input type="checkbox" id="remember" name="remember" <?php echo $rememberedEmail ? 'checked' : ''; ?>> Remember Me
+                    </label>
+                    <!-- <a href="forgotPassword.php" class="forgot-link">Forgot Password?</a> -->
                 </div>
 
                 <button type="button" onclick="callAjax()" class="login-btn">Sign In</button>

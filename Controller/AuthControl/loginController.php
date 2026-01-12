@@ -12,6 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $email = trim($_POST['email'] ?? "");
     $password = trim($_POST['password'] ?? "");
+    $remember = isset($_POST['remember']) && $_POST['remember'] === 'true';
 
     if ($email === "" || $password === "") {
         echo json_encode([
@@ -39,7 +40,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ]);
         exit;
     }
-    //password thik thakle tokhon jodi valid input hoi ! 
+    //password thik thakle tokhon jodi valid input hoi!
+
+    // Session e user info store kori
+    $_SESSION['user_id'] = $user['id'];
+    $_SESSION['email'] = $user['email'];
+    $_SESSION['role'] = $user['role'];
+
+    // Remember Me cookie set kori
+    if ($remember) {
+        // 30 din er jonno cookie set (password base64 encoded)
+        setcookie('remember_email', $email, time() + (30 * 24 * 60 * 60), '/');
+        setcookie('remember_pass', base64_encode($password), time() + (30 * 24 * 60 * 60), '/');
+    } else {
+        // Cookie delete kori
+        setcookie('remember_email', '', time() - 3600, '/');
+        setcookie('remember_pass', '', time() - 3600, '/');
+    }
 
     echo json_encode([
         "success" => true,

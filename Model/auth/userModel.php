@@ -19,7 +19,7 @@ function getUserByEmail($email)
         return false;
     }
 }
-function insertUser($username, $email, $password, $role)
+function insertUser($username, $email, $phone, $password, $role, $status)
 {
     $conn = dbConnect();
     // jodi connection fail hoy
@@ -28,7 +28,7 @@ function insertUser($username, $email, $password, $role)
     }
     // new user insert kori
     // status=1 → active after registration 
-    $query = "INSERT INTO users (username, email, password, role, status) VALUES ('$username', '$email', '$password', '$role',1)";
+    $query = "INSERT INTO users (name, email, phone, password, role, status) VALUES ('$username', '$email', '$phone', '$password', '$role', $status)";
     $result = mysqli_query($conn, $query);
     if ($result) {
         return true;
@@ -46,6 +46,11 @@ function emailExists($email)
 
     $query = "SELECT id FROM users WHERE email='$email'";
     $result = mysqli_query($conn, $query);
+
+    // Check if query failed
+    if (!$result) {
+        return false;
+    }
 
     // jodi ekta row o thake, mane email already ache
     if (mysqli_num_rows($result) > 0) {
