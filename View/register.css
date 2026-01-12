@@ -1,4 +1,4 @@
-/* Login Page - Simple & Clean (Under 100 lines) */
+/* Register Page - Same as Login */
 
 .login-body {
     margin: 0;
@@ -40,7 +40,7 @@
 
 .login-right {
     width: 50%;
-    padding: 60px;
+    padding: 40px 60px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -48,14 +48,14 @@
 }
 
 .login-title { font-size: 28px; color: #333; margin: 0 0 8px 0; }
-.login-subtitle { font-size: 14px; color: #777; margin: 0 0 30px 0; }
+.login-subtitle { font-size: 14px; color: #777; margin: 0 0 20px 0; }
 
-.form-group { margin-bottom: 20px; }
+.form-group { margin-bottom: 15px; }
 .form-label { display: block; margin-bottom: 6px; color: #555; font-size: 13px; font-weight: bold; }
 
 .form-input {
     width: 100%;
-    padding: 12px 14px;
+    padding: 10px 14px;
     border: 1px solid #ddd;
     border-radius: 6px;
     font-size: 14px;
@@ -66,15 +66,9 @@
 
 .error-text { color: red; font-size: 12px; margin-top: 4px; }
 
-.form-options { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
-.remember-label { font-size: 13px; color: #555; cursor: pointer; }
-.remember-label input { margin-right: 6px; cursor: pointer; }
-.forgot-link { color: #4CAF50; font-size: 13px; text-decoration: none; }
-.forgot-link:hover { text-decoration: underline; }
-
 .login-btn {
     width: 100%;
-    padding: 14px;
+    padding: 12px;
     background-color: #4CAF50;
     color: white;
     border: none;
@@ -88,6 +82,6 @@
 
 .result-message { color: red; font-size: 13px; text-align: center; margin-top: 12px; }
 
-.register-section { text-align: center; margin-top: 25px; font-size: 14px; color: #666; }
+.register-section { text-align: center; margin-top: 20px; font-size: 14px; color: #666; }
 .register-link { color: #4CAF50; text-decoration: none; font-weight: bold; }
 .register-link:hover { text-decoration: underline; }
