@@ -4,6 +4,7 @@ session_start();
 // UserModel include kori (etar vitorei dbConnect use hocche)
 require_once __DIR__ . "/../../Model/auth/UserModel.php";
 
+
 /*
    jodi POST request hoy, POST request → AJAX login attempt
 */
@@ -61,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     echo json_encode([
         "success" => true,
         "message" => "Login Successful",
-        "redirect" => "../../View/" . $user["role"] . "/dashboard.php"
+        "redirect" => "../View/" . $user["role"] . "/dashBoard.php"
     ]);
     exit;
 }
@@ -73,21 +74,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 if (isset($_SESSION['role'])) {
     switch ($_SESSION['role']) {
         case 'admin':
-            header("Location: ../../View/admin/dashboard.php");
+            header("Location: ../View/admin/dashBoard.php");
             exit;
         case 'farmer':
-            header("Location: ../../View/farmer/dashboard.php");
+            header("Location: ../../View/farmer/dashBoard.php");
             exit;
         case 'customer':
-            header("Location: ../../View/customer/dashboard.php");
+            header("Location: ../../View/customer/dashBoard.php");
             exit;
         case 'transporter':
-            header("Location: ../../View/transporter/dashboard.php");
+            header("Location: ../../View/transporter/dashBoard.php");
             exit;
     }
 }
-
 /*
    kono session nai, tai login page dekhai
-*/
+   */
 require_once '../../View/login.php';

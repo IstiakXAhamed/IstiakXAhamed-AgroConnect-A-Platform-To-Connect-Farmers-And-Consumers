@@ -30,7 +30,7 @@ $rememberedPass = isset($_COOKIE['remember_pass']) ? base64_decode($_COOKIE['rem
             }
 
             let xhr = new XMLHttpRequest();
-            xhr.open("POST", "../Controller/AuthControl/loginController.php")
+            xhr.open("POST", "../Controller/AuthControl/loginController.php", true);
             xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
             xhr.onreadystatechange = function() {
@@ -75,6 +75,7 @@ $rememberedPass = isset($_COOKIE['remember_pass']) ? base64_decode($_COOKIE['rem
             <h2 class="login-title">Welcome Back</h2>
             <p class="login-subtitle">Sign in to your account</p>
 
+            <!-- form starting from here -->
             <form id="loginForm" class="login-form">
 
                 <div class="form-group">

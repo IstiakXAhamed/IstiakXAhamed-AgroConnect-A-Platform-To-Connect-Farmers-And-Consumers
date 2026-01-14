@@ -122,6 +122,7 @@
 
             <p class="login-subtitle">Sign up to create an account</p>
 
+            <!--form for collecting data --> 
             <form class="login-form">
 
                 <div class="form-group">
