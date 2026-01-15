@@ -34,3 +34,6 @@ $pendingUsers = getPendingUsers();
 
 // recent orders collect kori
 $recentOrders = getRecentOrders();
+
+// view load kori
+require_once __DIR__ . "/../../View/admin/dashBoard.php";

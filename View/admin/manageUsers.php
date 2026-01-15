@@ -3,14 +3,11 @@
 
 <head>
     <title>Manage Users</title>
+    <link rel="stylesheet" href="../../View/admin/css/adminDashBoard.css">
     <script>
         function updateStatus(userId, action) {
-
-
             let xhr = new XMLHttpRequest();
-
-
-            xhr.open("POST", "../../Controller/admin/manageUsersController.php", true);
+            xhr.open("POST", "manageUsersController.php", true);
             xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
             xhr.onreadystatechange = function() {
@@ -25,7 +22,6 @@
                         }
                     } catch (e) {
                         alert("Server error");
-                        console.log(xhr.responseText);
                     }
                 }
             }
@@ -35,36 +31,58 @@
     </script>
 </head>
 
-
 <body>
-    <h2>User Management</h2>
-    <table border="1" cellpadding="10">
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Role</th>
-            <th>Status</th>
-            <th>Actions</th>
-        </tr>
 
-        <?php foreach ($users as $user) { ?>
-            <tr>
-                <td><?php echo $user['id']; ?></td>
-                <td><?php echo $user['name']; ?></td>
-                <td><?php echo $user['email']; ?></td>
-                <td><?php echo $user['role']; ?></td>
-                <td><?php echo $user['status'] == 1 ? 'Active' : 'Inactive'; ?></td>
-                <td>
-                    <button onclick="updateStatus(<?php echo $user['id']; ?>, 'approve')">Approve</button>
-                    <button onclick="updateStatus(<?php echo $user['id']; ?>, 'block')">Block</button>
-                </td>
-            </tr>
-        <?php } ?>
-    </table>
+    <!-- Header -->
+    <div class="header">
+        <h2>Manage Users</h2>
+        <div class="header-links">
+            <a href="../../Controller/admin/adminDashboardController.php">Dashboard</a>
+            <a href="../../Controller/admin/configController.php">Configuration</a>
+            <a href="../../Controller/admin/logoutController.php" class="logout">Logout</a>
+        </div>
+    </div>
 
-    <br>
-    <a href="../../View/admin/dashBoard.php">Back to Dashboard</a>
+    <div class="main-content">
+
+        <!-- Users Table -->
+        <div class="section">
+            <h3>All Users</h3>
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+                <?php
+                if ($users && mysqli_num_rows($users) > 0) {
+                    while ($user = mysqli_fetch_assoc($users)) {
+                        $statusClass = ($user['status'] == 1) ? "status-active" : "status-pending";
+                        $statusText = ($user['status'] == 1) ? "Active" : "Inactive";
+                        echo "<tr>
+                            <td>{$user['id']}</td>
+                            <td>{$user['name']}</td>
+                            <td>{$user['email']}</td>
+                            <td>{$user['role']}</td>
+                            <td class='{$statusClass}'>{$statusText}</td>
+                            <td>
+                                <button class='btn-approve' onclick=\"updateStatus({$user['id']}, 'approve')\">Approve</button>
+                                <button onclick=\"updateStatus({$user['id']}, 'block')\">Block</button>
+                            </td>
+                        </tr>";
+                    }
+                } else {
+                    echo "<tr><td colspan='6'>No users found</td></tr>";
+                }
+                ?>
+            </table>
+        </div>
+
+    </div>
+
 </body>
 
 </html>
