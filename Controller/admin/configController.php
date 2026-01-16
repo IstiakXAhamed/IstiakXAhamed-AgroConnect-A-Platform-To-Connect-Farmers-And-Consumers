@@ -9,6 +9,7 @@ if (!isset($_SESSION["role"]) || $_SESSION["role"] !== "admin") {
 
 // model include
 require_once __DIR__ . "/../../Model/admin/configModel.php";
+require_once __DIR__ . "/../../Model/admin/adminModel.php";
 
 // POST request - AJAX update, return JSON
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {

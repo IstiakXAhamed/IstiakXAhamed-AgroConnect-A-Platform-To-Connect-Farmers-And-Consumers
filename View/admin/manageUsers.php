@@ -10,7 +10,7 @@
             xhr.open("POST", "manageUsersController.php", true);
             xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
-            xhr.onreadystatechange = function() {
+            xhr.onreadystatechange = function () {
                 if (xhr.readyState == 4 && xhr.status == 200) {
                     try {
                         let jsObj = JSON.parse(xhr.responseText);
@@ -39,7 +39,7 @@
         <div class="header-links">
             <a href="../../Controller/admin/adminDashboardController.php">Dashboard</a>
             <a href="../../Controller/admin/configController.php">Configuration</a>
-            <a href="../../Controller/admin/logoutController.php" class="logout">Logout</a>
+            <a href="../../Controller/AuthControl/logoutController.php" class="logout">Logout</a>
         </div>
     </div>
 

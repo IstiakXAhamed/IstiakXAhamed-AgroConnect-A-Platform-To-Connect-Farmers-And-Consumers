@@ -74,7 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 if (isset($_SESSION['role'])) {
     switch ($_SESSION['role']) {
         case 'admin':
-            header("Location: ../View/admin/dashBoard.php");
+            header("Location: ../Controller/admin/adminDashboardController.php");
             exit;
         case 'farmer':
             header("Location: ../../View/farmer/dashBoard.php");
