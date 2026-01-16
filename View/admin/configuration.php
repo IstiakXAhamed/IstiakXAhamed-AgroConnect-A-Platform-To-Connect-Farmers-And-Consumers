@@ -48,7 +48,7 @@
         <div class="header-links">
             <a href="../../Controller/admin/adminDashboardController.php">Dashboard</a>
             <a href="../../Controller/admin/manageUsersController.php">Manage Users</a>
-            <a href="../../Controller/admin/logoutController.php" class="logout">Logout</a>
+            <a href="../../Controller/AuthControl/logoutController.php" class="logout">Logout</a>
         </div>
     </div>
 

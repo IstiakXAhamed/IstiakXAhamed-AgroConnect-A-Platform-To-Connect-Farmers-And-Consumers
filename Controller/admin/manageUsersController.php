@@ -11,6 +11,7 @@ if (!isset($_SESSION["role"]) || $_SESSION["role"] !== "admin") {
 
 //model include 
 require_once __DIR__ . "/../../Model/admin/adminModel.php";
+require_once __DIR__ . "/../../Model/admin/configModel.php";
 
 // AjaxPOST request handle korbo 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {

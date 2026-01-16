@@ -1,12 +1,13 @@
 <?php
 session_start();
-require_once __DIR__ . "/../../Model/admin/adminModel.php";
-
 // admin security check 
 if (!isset($_SESSION["role"]) || $_SESSION["role"] !== "admin") {
     header("Location: ../../View/login.php");
     exit;
 }
+require_once __DIR__ . "/../../Model/admin/adminModel.php";
+require_once __DIR__ . "/../../Model/admin/configModel.php";
+
 
 // stats collect kori 
 $stats = getAdminDashboardStats();
