@@ -10,35 +10,55 @@ if (!isset($_SESSION["role"]) || $_SESSION["role"] !== "farmer")
 <html>
     <head>
         <title>Add Product</title>
-        <link rel="stylesheet" href="../../CSS/farmer.css">
+        <link rel="stylesheet" href="CSS/farmer.css">
     </head>
     <body>
+
+    <div class="header">
         <h2>Add New Product</h2>
+        <div class="header-links">
+        <a href="dashBoard.php">Dashboard</a>
+        <a href="myProducts.php">My Products</a>
+        <a href="earnings.php">View Earnings</a>
+        <a href="../../Controller/AuthControl/logoutController.php" class="logout">Logout</a>
+    </div>
+    <div class="main-content">
         
-        <?php if (isset($_GET['error'])) {
+        <?php if (isset($_GET['error'])) 
+        {
             echo "<p style='color:red;'>" . $_GET['error'] . "</p>";
         } ?>
 
-        <from action="../../Controller/farmer/productController.php" method="POST" enctype="multipart/form-data">
+        <form action="../../Controller/farmer/productController.php" method="POST" enctype="multipart/form-data">
             <input type="hidden" name="action" value="add">
 
-            Product Name:<br>
-            <input type="text" name="productName" required><br><br>
+                <p>Product Name<br>
+        <input type="text" name="productName" required>
+    </p>
 
-            Price (Taka):<br>
-            <input type="number" name="price" required><br><br>
+    <p>Price (Taka)<br>
+        <input type="number" name="price" required>
+    </p>
 
-            Quantity:<br>
-            <input type="number" name="quantity" required><br><br>
+    <p>Quantity<br>
+        <input type="number" name="quantity" required>
+    </p>
 
-            Description:<br>
-            <textarea name="description"></textarea><br><br>
+    <p>Description<br>
+        <textarea name="description"></textarea>
+    </p>
 
-            Product Image:<br>
-            <input type="file" name="productImage" accept="image/*"><br><br>
+    <p>Product Image<br>
+        <input type="file" name="productImage">
+    </p>
+    
+    <button type="submit" value="Add Product">
 
-            <input type="submit" value="Add Product">
-        </from>
-        <br><a href="dashBoard.php">Back</a>
-    </body>
+    </form>
+    <div class="page-actions">
+        <a href="dashBoard.php">Back</a>
+    </div>
+</div>
+    
+</body>
 </html>

@@ -6,27 +6,43 @@ require_once __DIR__ . '/../../Controller/farmer/farmerDashboardController.php';
 <html>
     <head>
         <title>Farmer Dashboard</title>
-        <link rel="stylesheet" href="../../CSS/farmer.css">
+        <link rel="stylesheet" href="CSS/farmer.css">
     </head>
     <body>
-        <h2>farmer Dashboard</h2>
-        <p>Welcome, <?php echo $_SESSION["user_id"]; ?>!</p>
+        <div class="header">
+            <h2>Farmer Dashboard</h2>
+            
+            <div class="header-links">
+                <a href="dashBoard.php">Dashboard</a>
+                <a href="myProducts.php">My Products</a>
+                <a href="addProduct.php">Add Product</a>
+                <a href="earnings.php">View Earnings</a>
+                <a href="../../Controller/AuthControl/logoutController.php" class="logout">
+                    Logout
+                </a>
+            </div>
+        </div>
 
-        <h3>Status</h3>
-        <table border="1" cellpadding="10">
-            <tr>
-                <th>Total Products</th>
-                <tr>
-                    <td><?php echo $totalProducts; ?></td>
-                </tr>
-        </table>
+        <div class="main-content">
+        
+        <p>Welcome, Farmer</p><br>
 
-        <hr>
-        <a href="myProducts.php">My Products</a>
-        <a href="addProducts.php">Add Product</a>
-        <a href="../../Controller/AutControl/logoutController.php">Logout</a>
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h4>Total Products</h4>
+                <div class="number"><?php echo $totalProducts; ?></div>
+        </div>
+
+        <div class="stat-card">
+            <h4>Total Earnings</h4>
+            <div class="number">৳ <?php echo $totalEarnings ?? 0; ?></div>
+        </div>
+
+        <div class="stat-card">
+            <h4>Pending Earnings</h4>
+            <div class="number">৳ <?php echo $pendingEarning ?? 0; ?></div>
+        </div>
+        
     </body>
 </html>
-
-
-
+<?php

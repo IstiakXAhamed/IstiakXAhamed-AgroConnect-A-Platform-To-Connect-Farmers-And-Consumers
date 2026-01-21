@@ -77,13 +77,13 @@ if (isset($_SESSION['role'])) {
             header("Location: ../Controller/admin/adminDashboardController.php");
             exit;
         case 'farmer':
-            header("Location: ../../View/farmer/dashBoard.php");
+            header("Location: ../../controller/farmer/farmerDashboardController.php");
             exit;
         case 'customer':
-            header("Location: ../../View/customer/dashBoard.php");
+            header("Location: ../../controller/customer/customerDashboardController.php");
             exit;
         case 'transporter':
-            header("Location: ../../View/transporter/dashBoard.php");
+            header("Location: ../../controller/transporter/transporterDashboardController.php");
             exit;
     }
 }

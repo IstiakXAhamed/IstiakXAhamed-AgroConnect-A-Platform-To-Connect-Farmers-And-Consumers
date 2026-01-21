@@ -9,7 +9,7 @@ function addProduct($farmerId, $name, $price, $quantity, $image, $description)
     }
     $sql = "INSERT INTO products (farmer_id, name, price, quantity, image, description, status, created_at)
     VALUES ($farmerId, '$name', $price, $quantity, '$image', '$description', 1, NOW())";
-    return mysql_query($conn, $sql);
+    return mysqli_query($conn, $sql);
 }
 
 function getProductsByFarmer($farmerId)
@@ -18,7 +18,7 @@ function getProductsByFarmer($farmerId)
     if (!$conn) {
         return false;
     }
-    $sql = "SELECT * FROM producyts WHERE farmer_id = $farmerId ORDER BY id DESC";
+    $sql = "SELECT * FROM products WHERE farmer_id = $farmerId ORDER BY id DESC";
     return mysqli_query($conn, $sql);
 }
 
@@ -37,9 +37,7 @@ function getProductById($productId)
 function updateProduct($productId, $name, $price,$quantity, $image, $description)
 {
     $conn = dbConnect();
-    if (!$conn) {
-        return false;
-    }
+    
     if ($image != "") {
         $sql = "UPDATE products SET name= '$name', price=$price, quantity=$quantity, image='$image', description='$description' WHERE id=$productId";
     } 
@@ -56,7 +54,7 @@ function deleteProduct($productId)
     if (!$conn) {
         return false;
     }
-    $sql = "DELETE FROM products WHERE id = $productsId";
+    $sql = "DELETE FROM products WHERE id = $productId";
     return mysqli_query($conn, $sql);
 }
 
@@ -69,7 +67,46 @@ function countFarmerProducts($farmerId)
     $sql = "SELECT id FROM products WHERE farmer_id = $farmerId";
     $result = mysqli_query($conn, $sql);
 
-    return mysql_num_rows($result);
+    $count = mysqli_num_rows($result);
+
+    return $count;
+}
+function getTotalEarnings($farmerId)
+{
+    $conn = dbConnect();
+
+    $sql = " SELECT SUM(oi.price * oi.quantity) AS total FROM order_items oi JOIN products p ON oi.product_id = p.id JOIN orders o ON oi.order_id = o.id WHERE p.farmer_id = $farmerId AND o.status = 'approved' ";
+
+    $result = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_assoc($result);
+
+    return $row['total'] ?? 0;
 }
 
+function getPendingEarnings($farmerId)
+{
+    $conn = dbConnect();
+
+    $sql = "SELECT SUM(oi.price * oi.quantity) AS total FROM order_items oi JOIN products p ON oi.product_id = p.id JOIN orders o ON oi.order_id = o.id WHERE p.farmer_id = $farmerId AND o.status = 'pending' ";
+
+    $result = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_assoc($result);
+
+    return $row['total'] ?? 0;
+}
+
+function getCompletedOrdersCount($farmerId)
+{
+    $conn = dbConnect();
+    if (!$conn) {
+        return 0;
+    }
+
+    $sql = " SELECT COUNT(*) AS total FROM order_items oi JOIN products p ON oi.product_id = p.id JOIN orders o ON oi.order_id = o.id WHERE p.farmer_id = $farmerId AND o.status = 'apporvoed' ";
+
+    $result = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_assoc($result);
+
+    return $row['total'] ?? 0;
+}
 ?>

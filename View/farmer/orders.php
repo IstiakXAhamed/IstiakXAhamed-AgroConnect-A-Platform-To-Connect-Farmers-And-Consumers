@@ -8,7 +8,7 @@ $q = "SELECT products.name, orders.quantity, orders.status FROM orders JOIN prod
 $res = pg_query($conn,$q);
 ?>
 
-<link rel="stylesheet" href="../../CSS/farmer.css">
+<link rel="stylesheet" href="CSS/farmer.css">
 
 <div class="container">
     <h2>Orders</h2>
