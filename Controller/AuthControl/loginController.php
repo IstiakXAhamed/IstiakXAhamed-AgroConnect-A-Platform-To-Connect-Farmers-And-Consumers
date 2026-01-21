@@ -62,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     echo json_encode([
         "success" => true,
         "message" => "Login Successful",
-        "redirect" => "../View/" . $user["role"] . "/dashBoard.php"
+        "redirect" => "../Controller/" . $user["role"] . "/adminDashboardController.php"
     ]);
     exit;
 }
@@ -77,13 +77,13 @@ if (isset($_SESSION['role'])) {
             header("Location: ../Controller/admin/adminDashboardController.php");
             exit;
         case 'farmer':
-            header("Location: ../../View/farmer/dashBoard.php");
+            header("Location: ../Controller/farmer/farmerDashboardController.php");
             exit;
         case 'customer':
-            header("Location: ../../View/customer/dashBoard.php");
+            header("Location: ../Controller/customer/customerDashboardController.php");
             exit;
         case 'transporter':
-            header("Location: ../../View/transporter/dashBoard.php");
+            header("Location: ../Controller/transporter/transporterDashboardController.php");
             exit;
     }
 }
