@@ -4,7 +4,7 @@ require_once __DIR__ . "/../dbConnect.php";
 function addProduct($farmerId, $name, $price, $quantity, $image, $description)
 {
     $conn = dbConnect();
-    if (!$conn){
+    if (!$conn) {
         return false;
     }
     $sql = "INSERT INTO products (farmer_id, name, price, quantity, image, description, status, created_at)
@@ -34,17 +34,15 @@ function getProductById($productId)
     return mysqli_fetch_assoc($result);
 }
 
-function updateProduct($productId, $name, $price,$quantity, $image, $description)
+function updateProduct($productId, $name, $price, $quantity, $image, $description)
 {
     $conn = dbConnect();
-    
+
     if ($image != "") {
         $sql = "UPDATE products SET name= '$name', price=$price, quantity=$quantity, image='$image', description='$description' WHERE id=$productId";
-    } 
-    else
-        {
-            $sql = "UPDATE products SET name= '$name', price=$price, quantity=$quantity, description='$description' WHERE id=$productId";
-        }
+    } else {
+        $sql = "UPDATE products SET name= '$name', price=$price, quantity=$quantity, description='$description' WHERE id=$productId";
+    }
     return mysqli_query($conn, $sql);
 }
 
@@ -71,11 +69,18 @@ function countFarmerProducts($farmerId)
 
     return $count;
 }
+
+// Total Earnings (approved orders)
 function getTotalEarnings($farmerId)
 {
     $conn = dbConnect();
 
-    $sql = " SELECT SUM(oi.price * oi.quantity) AS total FROM order_items oi JOIN products p ON oi.product_id = p.id JOIN orders o ON oi.order_id = o.id WHERE p.farmer_id = $farmerId AND o.status = 'approved' ";
+    $sql = "SELECT SUM(order_items.price * order_items.quantity) AS total 
+            FROM order_items 
+            JOIN products ON order_items.product_id = products.id 
+            JOIN orders ON order_items.order_id = orders.id 
+            WHERE products.farmer_id = $farmerId 
+            AND orders.status = 'approved'";
 
     $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_assoc($result);
@@ -83,11 +88,17 @@ function getTotalEarnings($farmerId)
     return $row['total'] ?? 0;
 }
 
+// Pending Earnings (pending orders)
 function getPendingEarnings($farmerId)
 {
     $conn = dbConnect();
 
-    $sql = "SELECT SUM(oi.price * oi.quantity) AS total FROM order_items oi JOIN products p ON oi.product_id = p.id JOIN orders o ON oi.order_id = o.id WHERE p.farmer_id = $farmerId AND o.status = 'pending' ";
+    $sql = "SELECT SUM(order_items.price * order_items.quantity) AS total 
+            FROM order_items 
+            JOIN products ON order_items.product_id = products.id 
+            JOIN orders ON order_items.order_id = orders.id 
+            WHERE products.farmer_id = $farmerId 
+            AND orders.status = 'pending'";
 
     $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_assoc($result);
@@ -95,6 +106,7 @@ function getPendingEarnings($farmerId)
     return $row['total'] ?? 0;
 }
 
+// Completed Orders Count
 function getCompletedOrdersCount($farmerId)
 {
     $conn = dbConnect();
@@ -102,11 +114,91 @@ function getCompletedOrdersCount($farmerId)
         return 0;
     }
 
-    $sql = " SELECT COUNT(*) AS total FROM order_items oi JOIN products p ON oi.product_id = p.id JOIN orders o ON oi.order_id = o.id WHERE p.farmer_id = $farmerId AND o.status = 'apporvoed' ";
+    $sql = "SELECT COUNT(DISTINCT orders.id) AS total 
+            FROM order_items 
+            JOIN products ON order_items.product_id = products.id 
+            JOIN orders ON order_items.order_id = orders.id 
+            WHERE products.farmer_id = $farmerId 
+            AND orders.status = 'completed'";
 
     $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_assoc($result);
 
     return $row['total'] ?? 0;
 }
-?>
+
+// Commission rate fetch kori admin settings theke
+function getCommissionRate()
+{
+    $conn = dbConnect();
+    if (!$conn) {
+        return 5; // default 5%
+    }
+    $sql = "SELECT farmer_commission FROM platform_commission LIMIT 1";
+    $result = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_assoc($result);
+    return $row['farmer_commission'] ?? 5;
+}
+
+// Farmer er total sales (completed orders)
+function getFarmerTotalSales($farmerId)
+{
+    $conn = dbConnect();
+    if (!$conn) {
+        return 0;
+    }
+    $sql = "SELECT SUM(order_items.price * order_items.quantity) AS total 
+            FROM order_items 
+            JOIN products ON order_items.product_id = products.id 
+            JOIN orders ON order_items.order_id = orders.id 
+            WHERE products.farmer_id = $farmerId 
+            AND orders.status = 'completed'";
+    $result = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_assoc($result);
+    return $row['total'] ?? 0;
+}
+
+// Recent 10 sales with product details
+function getFarmerRecentSales($farmerId)
+{
+    $conn = dbConnect();
+    if (!$conn) {
+        return false;
+    }
+    $sql = "SELECT order_items.order_id, 
+                   order_items.quantity, 
+                   order_items.price, 
+                   products.name AS product_name, 
+                   orders.status, 
+                   orders.created_at 
+            FROM order_items 
+            JOIN products ON order_items.product_id = products.id 
+            JOIN orders ON order_items.order_id = orders.id 
+            WHERE products.farmer_id = $farmerId 
+            ORDER BY orders.created_at DESC 
+            LIMIT 10";
+    return mysqli_query($conn, $sql);
+}
+
+// ALL orders with customer name (for earnings page)
+function getAllFarmerOrders($farmerId)
+{
+    $conn = dbConnect();
+    if (!$conn) {
+        return false;
+    }
+    $sql = "SELECT order_items.order_id, 
+                   order_items.quantity, 
+                   order_items.price, 
+                   products.name AS product_name, 
+                   orders.status, 
+                   orders.created_at,
+                   users.name AS customer_name
+            FROM order_items 
+            JOIN products ON order_items.product_id = products.id 
+            JOIN orders ON order_items.order_id = orders.id 
+            JOIN users ON orders.customer_id = users.id
+            WHERE products.farmer_id = $farmerId 
+            ORDER BY orders.created_at DESC";
+    return mysqli_query($conn, $sql);
+}

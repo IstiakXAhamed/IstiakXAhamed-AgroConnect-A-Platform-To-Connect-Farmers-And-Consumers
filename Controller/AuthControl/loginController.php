@@ -62,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     echo json_encode([
         "success" => true,
         "message" => "Login Successful",
-        "redirect" => "../Controller/" . $user["role"] . "/adminDashboardController.php"
+        "redirect" => "../Controller/" . $user["role"] . "/" . $user["role"] . "DashboardController.php"
     ]);
     exit;
 }

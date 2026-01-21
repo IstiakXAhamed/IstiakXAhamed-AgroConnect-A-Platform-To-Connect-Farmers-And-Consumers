@@ -99,31 +99,37 @@
         <!-- Update Form -->
         <div class="section">
             <h3>Update Settings</h3>
-            <form id="configForm">
+            <form id="configForm" class="config-form">
 
-                <label>Farmer Commission (%):</label><br>
-                <input type="number" id="farmerCommission" value="<?php echo $commission['farmer_commission']; ?>">
-                <br><br>
+                <div class="form-row">
+                    <label>Farmer Commission (%):</label>
+                    <input type="number" id="farmerCommission" value="<?php echo $commission['farmer_commission']; ?>">
+                </div>
 
-                <label>Inside City Charge (Tk):</label><br>
-                <input type="number" id="insideDeliveryCharge" value="<?php echo $delivery['inside_city_charge']; ?>">
-                <br><br>
+                <div class="form-row">
+                    <label>Inside City Charge (Tk):</label>
+                    <input type="number" id="insideDeliveryCharge" value="<?php echo $delivery['inside_city_charge']; ?>">
+                </div>
 
-                <label>Outside City Charge (Tk):</label><br>
-                <input type="number" id="outsideDeliveryCharge" value="<?php echo $delivery['outside_city_charge']; ?>">
-                <br><br>
+                <div class="form-row">
+                    <label>Outside City Charge (Tk):</label>
+                    <input type="number" id="outsideDeliveryCharge" value="<?php echo $delivery['outside_city_charge']; ?>">
+                </div>
 
-                <label>Base Weight (kg):</label><br>
-                <input type="number" id="baseWeight" value="<?php echo $delivery['base_weight']; ?>">
-                <br><br>
+                <div class="form-row">
+                    <label>Base Weight (kg):</label>
+                    <input type="number" id="baseWeight" value="<?php echo $delivery['base_weight']; ?>">
+                </div>
 
-                <label>Extra Unit Charge (Tk/kg):</label><br>
-                <input type="number" id="extraUnitCharge" value="<?php echo $delivery['extra_weight_unit']; ?>">
-                <br><br>
+                <div class="form-row">
+                    <label>Extra Unit Charge (Tk/kg):</label>
+                    <input type="number" id="extraUnitCharge" value="<?php echo $delivery['extra_weight_unit']; ?>">
+                </div>
 
-                <label>Extra Charge (Tk):</label><br>
-                <input type="number" id="extraCharge" value="<?php echo $delivery['extra_charge']; ?>">
-                <br><br>
+                <div class="form-row">
+                    <label>Extra Charge (Tk):</label>
+                    <input type="number" id="extraCharge" value="<?php echo $delivery['extra_charge']; ?>">
+                </div>
 
                 <button type="button" class="btn-approve" onclick="updateConfig()">Update Configuration</button>
                 <span id="result"></span>

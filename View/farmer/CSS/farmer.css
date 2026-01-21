@@ -33,6 +33,7 @@ body {
 
 .header-links a.logout {
     background-color: #d32f2f;
+    border-radius: 15px;
 }
 /* main content area */
 
@@ -271,4 +272,64 @@ input[type="submit"]:hover {
     opacity: 0.9;
 }
 
+/* Revenue/Profit - Green */
+.revenue {
+    color: #4CAF50 !important;
+    font-weight: bold;
+}
 
+/* Commission - Red */
+.commission {
+    color: #d32f2f !important;
+    font-weight: bold;
+}
+
+/* Pending - Orange */
+.pending {
+    color: #ff9800 !important;
+    font-weight: bold;
+}
+
+.add-product-form {
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    width: 60%;
+    margin: 0 auto;
+}
+
+.form-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    gap: 15px;
+}
+
+.form-row label {
+    width: 150px;
+    font-weight: bold;
+    color: #333;
+    text-align: right;
+}
+
+.form-row input[type="text"],
+.form-row input[type="number"],
+.form-row textarea {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.form-row textarea {
+    min-height: 80px;
+    resize: vertical;
+}
+
+.add-product-form button {
+    display: block;
+    margin: 20px auto 0;
+    padding: 12px 30px;
+}

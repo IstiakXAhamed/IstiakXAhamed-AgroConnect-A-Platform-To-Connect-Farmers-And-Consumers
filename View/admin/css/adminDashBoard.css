@@ -169,3 +169,29 @@ label {
     font-size: 14px;
     font-weight: bold;
 }
+
+/* Form row - inline label and input */
+.config-form {
+    max-width: 600px;
+}
+
+.form-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    gap: 15px;
+}
+
+.form-row label {
+    width: 200px;
+    text-align: right;
+}
+
+.form-row input[type="number"],
+.form-row input[type="text"] {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
