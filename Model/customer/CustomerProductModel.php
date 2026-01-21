@@ -128,7 +128,7 @@ function searchProducts($keyword)
 }
 
 
-// 6. ADD TO CART
+// 6. ADD TO CART (For Customer)
 
 // Customer cart e product add korbe
 function addToCart($customerId, $productId, $quantity)
@@ -161,7 +161,7 @@ function getCartItems($customerId)
     if (!$conn) {
         return false;
     }
-
+    // cart e ki ki ache
     $sql = "SELECT 
                 cart.id AS cart_id,
                 cart.quantity AS cart_quantity,
@@ -187,6 +187,7 @@ function updateCartQuantity($cartId, $quantity)
         return false;
     }
 
+    // cart quantity update
     $sql = "UPDATE cart SET quantity = $quantity WHERE id = $cartId";
     return mysqli_query($conn, $sql);
 }
