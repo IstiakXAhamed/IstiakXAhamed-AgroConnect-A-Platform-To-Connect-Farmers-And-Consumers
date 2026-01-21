@@ -1,64 +1,66 @@
-<?php
-session_start();
-if (!isset($_SESSION["role"]) || $_SESSION["role"] !== "farmer")
-    {
-        header("Location: ../login.php");
-        exit;
-    }
-?>
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Add Product</title>
-        <link rel="stylesheet" href="CSS/farmer.css">
-    </head>
-    <body>
+
+<head>
+    <title>Add Product</title>
+    <link rel="stylesheet" href="../../View/farmer/css/farmer.css">
+</head>
+
+<body>
 
     <div class="header">
         <h2>Add New Product</h2>
         <div class="header-links">
-        <a href="dashBoard.php">Dashboard</a>
-        <a href="myProducts.php">My Products</a>
-        <a href="earnings.php">View Earnings</a>
-        <a href="../../Controller/AuthControl/logoutController.php" class="logout">Logout</a>
+            <a href="farmerDashboardController.php">Dashboard</a>
+            <a href="productController.php">My Products</a>
+            <a href="earningsController.php">View Earnings</a>
+            <a href="../AuthControl/logoutController.php" class="logout">Logout</a>
+        </div>
     </div>
+
     <div class="main-content">
-        
-        <?php if (isset($_GET['error'])) 
-        {
+
+        <?php if (isset($_GET['error'])) {
             echo "<p style='color:red;'>" . $_GET['error'] . "</p>";
         } ?>
 
-        <form action="../../Controller/farmer/productController.php" method="POST" enctype="multipart/form-data">
+        <form action="productController.php" method="POST" enctype="multipart/form-data" class="add-product-form">
             <input type="hidden" name="action" value="add">
 
-                <p>Product Name<br>
-        <input type="text" name="productName" required>
-    </p>
+            <div class="form-row">
+                <label>Product Name:</label>
+                <input type="text" name="productName" required>
+            </div>
 
-    <p>Price (Taka)<br>
-        <input type="number" name="price" required>
-    </p>
+            <div class="form-row">
+                <label>Price (Taka):</label>
+                <input type="number" name="price" required>
+            </div>
 
-    <p>Quantity<br>
-        <input type="number" name="quantity" required>
-    </p>
+            <div class="form-row">
+                <label>Quantity:</label>
+                <input type="number" name="quantity" required>
+            </div>
 
-    <p>Description<br>
-        <textarea name="description"></textarea>
-    </p>
+            <div class="form-row">
+                <label>Description:</label>
+                <textarea name="description"></textarea>
+            </div>
 
-    <p>Product Image<br>
-        <input type="file" name="productImage">
-    </p>
-    
-    <button type="submit" value="Add Product">
+            <div class="form-row">
+                <label>Product Image:</label>
+                <input type="file" name="productImage">
+            </div>
 
-    </form>
-    <div class="page-actions">
-        <a href="dashBoard.php">Back</a>
+            <button type="submit">Add Product</button>
+
+            <div class="page-actions">
+                <a href="farmerDashboardController.php">Back</a>
+            </div>
+        </form>
+
     </div>
-</div>
-    
+
 </body>
+
 </html>

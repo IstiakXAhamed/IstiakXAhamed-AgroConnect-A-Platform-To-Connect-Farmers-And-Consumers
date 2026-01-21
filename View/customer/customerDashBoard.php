@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>
-            Customer Dahsboard 
-        </title>
-    </head>
+
+<head>
+    <title>
+        Customer Dahsboard
+    </title>
+</head>
+
 <body>
     <h2>Available Products </h2>
 
     <?php
-    if(empty($products)){
+    if (empty($products)) {
         echo "No products Available !";
-
-    }
-    else{
-        echo  "
+    } else {
+        echo "
         <table border='1'>
             <tr>
                 <th>Product ID</th>
@@ -30,12 +30,12 @@
                 <th>Product Added By</th>
             </tr>
         ";
+    }
 
-        foreach($products as $product){
-            
-
-    }    
+    foreach ($products as $product) {
+    }
     ?>
 
 </body>
+
 </html>
