@@ -6,10 +6,12 @@ if (!isset($_SESSION["role"]) || $_SESSION["role"] !== "farmer")
         exit;
     }
     $farmerId = $_SESSION["user_id"];
-header("Location: ../../View/farmer/dashboard.php");
-/*    require_once __DIR__ . "/../../Model/farmer/productModel.php";
+
+    require_once __DIR__ . "/../../Model/farmer/productModel.php";
+
     $totalProducts = countFarmerProducts($farmerId);
+    $totalEarnings = getTotalEarnings($farmerId);
+    $pendingEarning = getPendingEarnings($farmerId);
 
     require_once __DIR__ . "/../../View/farmer/dashBoard.php";
-    header("Location: ../../View/farmer/dashboard.php");    */
-    ?>
+?>

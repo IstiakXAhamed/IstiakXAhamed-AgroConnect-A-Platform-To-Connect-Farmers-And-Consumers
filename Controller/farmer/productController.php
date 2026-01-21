@@ -1,90 +1,71 @@
 <?php
 session_start();
+require_once __DIR__ . '/../../Model/farmer/productModel.php';
 
-if (!isset($_SESSION["role"]) || $_SESSION["role"] !== "farmer")
-    {
-        header("Location: ../..View/login.php");
-        exit;
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    header("Location: ../../View/farmer/dashBoard.php");
+    exit;
+}
+
+$action = $_POST['action'] ?? '';
+
+if ($action === "delete") {
+
+    $productId = $_POST['productId'];
+    deleteProduct($productId);
+
+    header("Location: ../../View/farmer/myProducts.php?success=Deleted");
+    exit;
+}
+
+if ($action === "update") {
+
+    $productId = $_POST['productId'];
+    $name = $_POST['productName'];
+    $price = $_POST['price'];
+    $quantity = $_POST['quantity'];
+    $desc = $_POST['description'];
+
+    $imagePath = $product['image'];
+
+    if (!empty($_FILES['productImage']['name'])) {
+        $imgName = time() . "_" . $_FILES['productImage']['name'];
+        $tmp = $_FILES['productImage']['tmp_name'];
+
+        move_uploaded_file($tmp, "../../uploads/" . $imgName);
+        $imagePath = "uploads/" . $imgName;
     }
 
-    $farmerId = $_SESSION["user_id"];
+    updateProduct($productId, $name, $price, $quantity, $imagePath, $desc);
 
-    require_once __DIR__ . "/../../Model/farmer/productModel.php";
+    header("Location: ../../View/farmer/myProducts.php?success=Updated");
+    exit;
+}
 
-    if ($_SERVER['REQUEST_METHOD'] === 'POST')
-        {
-            $action = $_POST['action'];
+if ($action === "add") {
 
-            if ($action == "add") {
-                $name = $_POST['productName'];
-                $price = $_POST['price'];
-                $quantity = $_POST['quantity'];
-                $description = $_POST['description'];
+    $farmerId = $_SESSION['user_id'];
+    $name = $_POST['productName'];
+    $price = $_POST['price'];
+    $quantity = $_POST['quantity'];
+    $desc = $_POST['description'];
 
-                $imagePath = "";
-                if (isset($_FILES['productImage']) && $_FILES['productImage']['error'] == 0) {
-                    $uploadDir = "../../uploads/products/";
-                    $fileName = time() . "_" .$_FILES['productImage']['name'];
-                    $targetPath = $uploadDir . $fileName;
+    $imagePath = "";
 
-                    if (move_uploaded_file($_FILES['productImage']['tmp_name'], $targetPath)) {
-                        $imagePath = "uploads/products/" . $fileName;
-                    }
-                }
-                $result = addProduct($farmerId, $name, $price, $quantity, $imagePath, $description);
-                if ($result) {
-                    header("Location: ../../View/farmer/myProducts.php?success=Product added");
+    if (!empty($_FILES['productImage']['name'])) {
+        $imgName = time() . "_" . $_FILES['productImage']['name'];
+        $tmp = $_FILES['productImage']['tmp_name'];
 
-                }
-                else{
-                    header("Location: ../../View/farmer/addProduct.php?error=Failed");
-                }
-                exit;
-            }
+        move_uploaded_file($tmp, "../../uploads/" . $imgName);
+        $imagePath = "uploads/" . $imgName;
+    }
 
-            if ($action == "update") 
-                {
-                   $productId = $_POST['productId'];
-                   $name = $_POST['productName'];
-                   $price = $_POST['price'];
-                   $quantity = $_POST['quantity'];
-                   $description = $_POST['description'];
-                   
-                   $imagePath ="";
-                   if (isset($_FILES['productImage']) && $_FILES['productImage']['error'] == 0)
-                    {
-                        $uploadDir = "../../uploads/products/";
-                        $fileName = time() . "_" . $_FILES['productImage']['name'];
-                        $targetPath = $uploadDir . $fileName;
+    addProduct($farmerId, $name, $price, $quantity, $imagePath, $desc);
 
-                        if (move_uploaded_file($_FILES['productImage']['tmp_name'], $targetPath)) 
-                            {
-                                $imagePath = "uploads/products/" . $fileName;
+    header("Location: ../../View/farmer/myProducts.php?success=Added");
+    exit;
+}
 
-                            }
-                    }
-
-                    $result = updateProduct($productId, $name, $price, $quantity, $imagePath, $description);
-
-                    if ($reslt) {
-                        header("Location: ../../View/farmer/myProducts.php?success=Updated");
-                    }
-                    else {
-                        header("Location: ../farmer/editProduct.php?id=$productId&error=Failed");
-                    }
-                    exit;
-                }
-
-                if ($action == "delete")
-                    {
-                        $productId = $_POST['productId'];
-                        deleteProduct($productId);
-                        header("Location: ../../View/myProducts.php?success=Deleted");
-                        exit;
-                    }
-        }
-        header("Location: ../../View/farmer/dashBoard.php");
-        exit;
-        ?>
-
-        
+header("Location: ../../View/farmer/dashBoard.php");
+exit;
+?>

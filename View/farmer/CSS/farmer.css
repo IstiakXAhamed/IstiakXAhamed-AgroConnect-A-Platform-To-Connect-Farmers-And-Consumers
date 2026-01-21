@@ -1,15 +1,17 @@
+/* Reset default styles */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
+/* page body styling */
 
 body {
     font-family: Arial, sans-serif;
     background-color: #f8f9fa;
     min-height: 100vh;
 }
-
+/* top header / NAV bar */
 .header {
     background-color: #4CAF50;
     color: white;
@@ -18,6 +20,7 @@ body {
     justify-content: space-between;
     align-items: center;
 }
+/* header navigation links */
 
 .header-links a{
     color: white;
@@ -26,16 +29,19 @@ body {
     padding: 8px 16px;
     border-radius: 4px;
 }
+/* logout button*/
 
 .header-links a.logout {
     background-color: #d32f2f;
 }
+/* main content area */
 
 .main-content {
     padding: 30px 40px;
     max-width: 1200px;
     margin: 0 auto;
 }
+/* dashboard stats grid*/
 
 .stats-grid {
     display: grid;
@@ -43,6 +49,7 @@ body {
     gap: 20px;
     margin-bottom: 30px;
 }
+/* dashboard stats card*/
 
 .stat-card {
     background: white;
@@ -51,19 +58,21 @@ body {
     border-left: 4px solid #4CAF50;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
+/* stat card title */
 
 .stat-card h4 {
     color: #777;
     font-size: 14px;
     margin-bottom: 10px;
 }
+/*stat card number*/
 
 .stat-card .number {
     color: #333;
     font-size: 32px;
     font-weight: bold;
 }
-
+/* content section boxs */
 .section {
     background: white;
     border-radius: 8px;
@@ -71,6 +80,7 @@ body {
     margin-bottom: 20px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1)
 }
+/* section heading */
 
 .section h3 {
     color: #333;
@@ -79,11 +89,13 @@ body {
     padding-bottom: 10px;
     border-bottom: 1px solid #eee;
 }
+/* Table styling */
 
 table {
     width: 100%;
     border-collapse: collapse;
 }
+/* table header*/
 
 th {
     background-color: #4CAF50;
@@ -91,6 +103,7 @@ th {
     padding: 12px;
     text-align: left;
 }
+/* table data cell */
 
 td {
     padding: 12px;
@@ -101,6 +114,7 @@ td {
 tr:hover td {
     background-color: #f5f5f5;
 }
+/* button styling for every */
 
 button {
     background-color: #4CAF50;
@@ -109,18 +123,152 @@ button {
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    transition: all 0.25s ease-in-out;
 }
 
 button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
     opacity: 0.9;
 }
+/* status text for active */
 
 .status-active {
     color: #4CAF50;
     font-weight: bold;
 }
+/* status text for active */
 
 .status-pending {
     color: #ff9800;
     font-weight: bold;
 }
+
+.error-msg {
+    color: red;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+/* Navigation Bar */
+.top-nav {
+    background-color: #4CAF50;
+    padding: 15px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.top-nav .nav-left a {
+    color: white;
+    text-decoration: none;
+    margin-right: 20px;
+    font-weight: bold;
+    padding: 8px 14px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+.top-nav .nav-right a {
+    color: white;
+    text-decoration: none;
+    margin-left: 15px;
+    padding: 8px 14px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+.top-nav a:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 0 0 2px white inset; /* border-like effect */
+}
+
+.top-nav .logout {
+    background-color: #d32f2f;
+}
+
+.top-nav .logout:hover {
+    background-color: #b71c1c;
+    box-shadow: 0 0 0 2px #fff inset;
+}
+
+/* Page Layout */
+.page-wrapper {
+    display: flex;
+    gap: 25px;
+    padding: 30px 40px;
+}
+
+/* Left Action Panel */
+.action-panel {
+    width: 220px;
+    background: white;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.action-panel a {
+    display: block;
+    text-decoration: none;
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.action-panel a.logout {
+    background-color: #d32f2f;
+}
+
+/* Main Content */
+.content-area {
+    flex: 1;
+}
+
+/* Submit button styling */
+input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+
+input[type="submit"]:hover {
+    background-color: #43a047;
+}
+
+/* Success message */
+.success-msg {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    border-left: 4px solid #4CAF50;
+    padding: 12px 15px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+/* Add New button */
+.add-new-btn {
+    display: inline-block;
+    margin-bottom: 15px;
+    text-decoration: none;
+    background-color: #4CAF50;
+    color: white;
+    padding: 8px 14px;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.add-new-btn:hover {
+    opacity: 0.9;
+}
+
+
