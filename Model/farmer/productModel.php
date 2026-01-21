@@ -81,7 +81,7 @@ function countFarmerProducts($farmerId)
     return $count;
 }
 
-// Total Earnings (approved orders)
+// Total Earnings (ONLY completed orders - after customer confirms received)
 function getTotalEarnings($farmerId)
 {
     $conn = dbConnect();
@@ -91,7 +91,7 @@ function getTotalEarnings($farmerId)
             JOIN products ON order_items.product_id = products.id 
             JOIN orders ON order_items.order_id = orders.id 
             WHERE products.farmer_id = $farmerId 
-            AND orders.status = 'approved'";
+            AND orders.status = 'completed'";
 
     $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_assoc($result);
@@ -99,7 +99,7 @@ function getTotalEarnings($farmerId)
     return $row['total'] ?? 0;
 }
 
-// Pending Earnings (pending orders)
+// Pending Earnings (pending + approved orders - not yet completed)
 function getPendingEarnings($farmerId)
 {
     $conn = dbConnect();
@@ -109,7 +109,7 @@ function getPendingEarnings($farmerId)
             JOIN products ON order_items.product_id = products.id 
             JOIN orders ON order_items.order_id = orders.id 
             WHERE products.farmer_id = $farmerId 
-            AND orders.status = 'pending'";
+            AND (orders.status = 'pending' OR orders.status = 'approved')";
 
     $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_assoc($result);
