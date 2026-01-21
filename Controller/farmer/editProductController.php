@@ -23,5 +23,8 @@ if (!$product) {
     exit;
 }
 
+// Get categories for dropdown
+$categories = getAllCategories();
+
 // View load kori
 require_once __DIR__ . "/../../View/farmer/editProduct.php";

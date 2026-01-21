@@ -1,14 +1,25 @@
 <?php
 require_once __DIR__ . "/../dbConnect.php";
 
-function addProduct($farmerId, $name, $price, $quantity, $image, $description)
+// Get all categories for dropdown
+function getAllCategories()
 {
     $conn = dbConnect();
     if (!$conn) {
         return false;
     }
-    $sql = "INSERT INTO products (farmer_id, name, price, quantity, image, description, status, created_at)
-    VALUES ($farmerId, '$name', $price, $quantity, '$image', '$description', 1, NOW())";
+    $sql = "SELECT * FROM categories ORDER BY name ASC";
+    return mysqli_query($conn, $sql);
+}
+
+function addProduct($farmerId, $name, $price, $quantity, $image, $description, $categoryId)
+{
+    $conn = dbConnect();
+    if (!$conn) {
+        return false;
+    }
+    $sql = "INSERT INTO products (farmer_id, name, price, quantity, image, description, category_id, status, created_at)
+    VALUES ($farmerId, '$name', $price, $quantity, '$image', '$description', $categoryId, 0, NOW())";
     return mysqli_query($conn, $sql);
 }
 
@@ -34,14 +45,14 @@ function getProductById($productId)
     return mysqli_fetch_assoc($result);
 }
 
-function updateProduct($productId, $name, $price, $quantity, $image, $description)
+function updateProduct($productId, $name, $price, $quantity, $image, $description, $categoryId)
 {
     $conn = dbConnect();
 
     if ($image != "") {
-        $sql = "UPDATE products SET name= '$name', price=$price, quantity=$quantity, image='$image', description='$description' WHERE id=$productId";
+        $sql = "UPDATE products SET name='$name', price=$price, quantity=$quantity, image='$image', description='$description', category_id=$categoryId WHERE id=$productId";
     } else {
-        $sql = "UPDATE products SET name= '$name', price=$price, quantity=$quantity, description='$description' WHERE id=$productId";
+        $sql = "UPDATE products SET name='$name', price=$price, quantity=$quantity, description='$description', category_id=$categoryId WHERE id=$productId";
     }
     return mysqli_query($conn, $sql);
 }

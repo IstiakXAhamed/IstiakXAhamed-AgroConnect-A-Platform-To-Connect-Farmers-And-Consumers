@@ -28,6 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $price = $_POST['price'];
         $quantity = $_POST['quantity'];
         $desc = $_POST['description'];
+        $categoryId = $_POST['categoryId'];
 
         $imagePath = "";
 
@@ -39,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $imagePath = "uploads/" . $imgName;
         }
 
-        updateProduct($productId, $name, $price, $quantity, $imagePath, $desc);
+        updateProduct($productId, $name, $price, $quantity, $imagePath, $desc, $categoryId);
         header("Location: productController.php?success=Updated");
         exit;
     }
@@ -49,6 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $price = $_POST['price'];
         $quantity = $_POST['quantity'];
         $desc = $_POST['description'];
+        $categoryId = $_POST['categoryId'];
 
         $imagePath = "";
         // Image add kori , path add kori
@@ -59,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $imagePath = "uploads/" . $imgName;
         }
 
-        addProduct($farmerId, $name, $price, $quantity, $imagePath, $desc);
+        addProduct($farmerId, $name, $price, $quantity, $imagePath, $desc, $categoryId);
         header("Location: productController.php?success=Added");
         exit;
     }

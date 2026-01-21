@@ -40,6 +40,21 @@
             </div>
 
             <div class="form-row">
+                <label>Category:</label>
+                <select name="categoryId" required>
+                    <option value="">Select Category</option>
+                    <?php
+                    if ($categories && mysqli_num_rows($categories) > 0) {
+                        while ($cat = mysqli_fetch_assoc($categories)) {
+                            $selected = ($cat['id'] == $product['category_id']) ? "selected" : "";
+                            echo "<option value='{$cat['id']}' {$selected}>{$cat['name']}</option>";
+                        }
+                    }
+                    ?>
+                </select>
+            </div>
+
+            <div class="form-row">
                 <label>Description:</label>
                 <textarea name="description"><?php echo $product['description']; ?></textarea>
             </div>

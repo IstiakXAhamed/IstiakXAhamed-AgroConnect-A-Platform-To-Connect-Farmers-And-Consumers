@@ -328,6 +328,15 @@ input[type="submit"]:hover {
     resize: vertical;
 }
 
+.form-row select {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    background-color: white;
+}
+
 .add-product-form button {
     display: block;
     margin: 20px auto 0;
