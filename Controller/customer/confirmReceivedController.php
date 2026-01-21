@@ -28,10 +28,23 @@ if (mysqli_num_rows($checkResult) === 0) {
     exit;
 }
 
+// Get order items and deduct stock
+$orderItemsSql = "SELECT product_id, quantity FROM order_items WHERE order_id = $orderId";
+$orderItemsResult = mysqli_query($conn, $orderItemsSql);
+
+while ($item = mysqli_fetch_assoc($orderItemsResult)) {
+    $productId = $item['product_id'];
+    $orderedQty = $item['quantity'];
+
+    // Deduct quantity from products table
+    $deductSql = "UPDATE products SET quantity = quantity - $orderedQty WHERE id = $productId";
+    mysqli_query($conn, $deductSql);
+}
+
 // Update order status to 'completed'
 $updateSql = "UPDATE orders SET status = 'completed' WHERE id = $orderId";
 mysqli_query($conn, $updateSql);
 
 // Redirect with success message
-header("Location: orderDetailsController.php?id=$orderId&success=Order marked as completed! Thank you.");
+header("Location: orderDetailsController.php?id=$orderId&success=Order marked as completed! Stock updated.");
 exit;
