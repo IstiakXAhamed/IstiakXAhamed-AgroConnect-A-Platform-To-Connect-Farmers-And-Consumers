@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 
@@ -14,6 +13,7 @@
         <h2>Admin Dashboard</h2>
         <div class="header-links">
             <a href="../../Controller/admin/manageUsersController.php">Manage Users</a>
+            <a href="../../Controller/admin/ordersController.php">Orders</a>
             <a href="../../Controller/admin/configController.php">Configuration</a>
             <a href="../../Controller/AuthControl/logoutController.php" class="logout">Logout</a>
         </div>

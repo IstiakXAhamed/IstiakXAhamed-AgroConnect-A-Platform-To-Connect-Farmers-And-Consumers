@@ -1,4 +1,4 @@
-/* Login Page - Simple & Clean (Under 100 lines) */
+/* Login Page */
 
 .login-body {
     margin: 0;
@@ -6,6 +6,7 @@
     font-family: Arial, sans-serif;
     min-height: 100vh;
     display: flex;
+    background-color: #FFF8E7;
 }
 
 .login-container {
@@ -31,12 +32,20 @@
     left: 0;
     right: 0;
     padding: 40px;
-    background: linear-gradient(transparent, rgba(0,0,0,0.8));
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
     color: white;
 }
 
-.login-brand { font-size: 28px; font-weight: bold; margin-bottom: 5px; }
-.login-tagline { font-size: 14px; opacity: 0.9; }
+.login-brand {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.login-tagline {
+    font-size: 14px;
+    opacity: 0.9;
+}
 
 .login-right {
     width: 50%;
@@ -47,11 +56,29 @@
     background-color: #f8f9fa;
 }
 
-.login-title { font-size: 28px; color: #333; margin: 0 0 8px 0; }
-.login-subtitle { font-size: 14px; color: #777; margin: 0 0 30px 0; }
+.login-title {
+    font-size: 28px;
+    color: #333;
+    margin: 0 0 8px 0;
+}
 
-.form-group { margin-bottom: 20px; }
-.form-label { display: block; margin-bottom: 6px; color: #555; font-size: 13px; font-weight: bold; }
+.login-subtitle {
+    font-size: 14px;
+    color: #777;
+    margin: 0 0 30px 0;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 6px;
+    color: #555;
+    font-size: 13px;
+    font-weight: bold;
+}
 
 .form-input {
     width: 100%;
@@ -62,15 +89,44 @@
     box-sizing: border-box;
 }
 
-.form-input:focus { border-color: #4CAF50; outline: none; }
+.form-input:focus {
+    border-color: #4CAF50;
+    outline: none;
+}
 
-.error-text { color: red; font-size: 12px; margin-top: 4px; }
+.error-text {
+    color: red;
+    font-size: 12px;
+    margin-top: 4px;
+}
 
-.form-options { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
-.remember-label { font-size: 13px; color: #555; cursor: pointer; }
-.remember-label input { margin-right: 6px; cursor: pointer; }
-.forgot-link { color: #4CAF50; font-size: 13px; text-decoration: none; }
-.forgot-link:hover { text-decoration: underline; }
+.form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.remember-label {
+    font-size: 13px;
+    color: #555;
+    cursor: pointer;
+}
+
+.remember-label input {
+    margin-right: 6px;
+    cursor: pointer;
+}
+
+.forgot-link {
+    color: #4CAF50;
+    font-size: 13px;
+    text-decoration: none;
+}
+
+.forgot-link:hover {
+    text-decoration: underline;
+}
 
 .login-btn {
     width: 100%;
@@ -84,10 +140,30 @@
     cursor: pointer;
 }
 
-.login-btn:hover { background-color: #45a049; }
+.login-btn:hover {
+    background-color: #45a049;
+}
 
-.result-message { color: red; font-size: 13px; text-align: center; margin-top: 12px; }
+.result-message {
+    color: red;
+    font-size: 13px;
+    text-align: center;
+    margin-top: 12px;
+}
 
-.register-section { text-align: center; margin-top: 25px; font-size: 14px; color: #666; }
-.register-link { color: #4CAF50; text-decoration: none; font-weight: bold; }
-.register-link:hover { text-decoration: underline; }
+.register-section {
+    text-align: center;
+    margin-top: 25px;
+    font-size: 14px;
+    color: #666;
+}
+
+.register-link {
+    color: #4CAF50;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.register-link:hover {
+    text-decoration: underline;
+}

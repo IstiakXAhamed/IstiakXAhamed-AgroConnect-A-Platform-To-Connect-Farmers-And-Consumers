@@ -9,11 +9,9 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'customer') {
 
 require_once __DIR__ . "/../../Model/customer/CustomerProductModel.php";
 
-// Get all active products
-$products = getAllActiveProducts();
+$customerId = $_SESSION['user_id'];
 
-// Get categories for filter
-$categories = getAllCategories();
+// Get all orders for this customer
+$orders = getCustomerOrders($customerId);
 
-// Load view
-require_once __DIR__ . "/../../View/customer/customerDashBoard.php";
+require_once __DIR__ . "/../../View/customer/orders.php";
