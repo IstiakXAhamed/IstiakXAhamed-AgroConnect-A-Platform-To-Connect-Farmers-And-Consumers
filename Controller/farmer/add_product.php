@@ -9,5 +9,8 @@ if (!isset($_SESSION["role"]) || $_SESSION["role"] !== "farmer") {
 
 require_once __DIR__ . "/../../Model/farmer/productModel.php";
 
+// Get categories for dropdown
+$categories = getAllCategories();
+
 // Show add product form
 require_once __DIR__ . "/../../View/farmer/addProduct.php";
