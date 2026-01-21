@@ -20,21 +20,43 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $productId = $_POST['productId'];
         $quantity = $_POST['quantity'] ?? 1;
 
+        // Check stock limit
+        $conn = dbConnect();
+        $stockCheck = mysqli_query($conn, "SELECT quantity FROM products WHERE id = $productId");
+        $product = mysqli_fetch_assoc($stockCheck);
+        $maxStock = $product['quantity'];
+
+        if ($quantity > $maxStock) {
+            header("Location: customerDashboardController.php?error=Only $maxStock items available");
+            exit;
+        }
+
         addToCart($customerId, $productId, $quantity);
         header("Location: cartController.php?success=Added to cart");
-
         exit;
     }
 
     // Update quantity
     if ($action === 'update') {
         $cartId = $_POST['cartId'];
-
-
         $quantity = $_POST['quantity'];
 
-        updateCartQuantity($cartId, $quantity);
+        // Check stock limit before update
+        $conn = dbConnect();
+        $cartItem = mysqli_query($conn, "SELECT product_id FROM cart WHERE id = $cartId");
+        $item = mysqli_fetch_assoc($cartItem);
+        $productId = $item['product_id'];
 
+        $stockCheck = mysqli_query($conn, "SELECT quantity FROM products WHERE id = $productId");
+        $product = mysqli_fetch_assoc($stockCheck);
+        $maxStock = $product['quantity'];
+
+        if ($quantity > $maxStock) {
+            header("Location: cartController.php?error=Only $maxStock items available in stock");
+            exit;
+        }
+
+        updateCartQuantity($cartId, $quantity);
         header("Location: cartController.php?success=Updated");
         exit;
     }
