@@ -2,39 +2,71 @@
 <html>
 
 <head>
-    <title>
-        Customer Dahsboard
-    </title>
+    <title>AgroConnect - Products</title>
+    <link rel="stylesheet" href="../../View/customer/css/customer.css">
 </head>
 
 <body>
-    <h2>Available Products </h2>
 
-    <?php
-    if (empty($products)) {
-        echo "No products Available !";
-    } else {
-        echo "
-        <table border='1'>
-            <tr>
-                <th>Product ID</th>
-                <th>Product Name</th>
-                <th>Product Price</th>
-                <th>Product Quantity</th>
-                <th>Product Description</th>
-                <th>Product Image</th>
-                <th>Product Category</th>
-                <th>Product Stock</th>
-                <th>Product Status</th>
-                <th>Product Added Date</th>
-                <th>Product Added By</th>
-            </tr>
-        ";
-    }
+    <!-- Header -->
+    <div class="header">
+        <h2>AgroConnect</h2>
+        <div class="header-links">
+            <a href="customerDashboardController.php">Products</a>
+            <a href="cartController.php">My Cart</a>
+            <a href="ordersController.php">My Orders</a>
+            <a href="../AuthControl/logoutController.php" class="logout">Logout</a>
+        </div>
+    </div>
 
-    foreach ($products as $product) {
-    }
-    ?>
+    <div class="main-content">
+
+        <h3 style="margin-bottom: 20px;">Available Products</h3>
+
+        <!-- Product Cards Grid -->
+        <div class="products-grid">
+
+            <?php
+            if ($products && mysqli_num_rows($products) > 0) {
+                while ($p = mysqli_fetch_assoc($products)) {
+                    // Image or placeholder
+                    $imgSrc = ($p['image'] != "")
+                        ? "../../{$p['image']}"
+                        : "https://via.placeholder.com/200x150?text=No+Image";
+            ?>
+
+                    <div class="product-card">
+                        <!-- Product Image (Big) -->
+                        <img src="<?php echo $imgSrc; ?>" alt="<?php echo $p['product_name']; ?>">
+
+                        <!-- Product Info -->
+                        <div class="product-info">
+                            <h4><?php echo $p['product_name']; ?></h4>
+                            <p class="category"><?php echo $p['category_name'] ?? 'Uncategorized'; ?></p>
+                            <p class="farmer">By: <?php echo $p['farmer_name']; ?></p>
+                            <p class="price">৳<?php echo $p['price']; ?></p>
+                            <p class="stock">Stock: <?php echo $p['quantity']; ?></p>
+                        </div>
+
+                        <!-- Add to Cart -->
+                        <form action="cartController.php" method="POST" class="card-form">
+                            <input type="hidden" name="action" value="add">
+                            <input type="hidden" name="productId" value="<?php echo $p['id']; ?>">
+                            <input type="number" name="quantity" value="1" min="1" max="<?php echo $p['quantity']; ?>">
+                            <button type="submit">Add to Cart</button>
+                        </form>
+                    </div>
+
+            <?php
+                }
+            } else {
+                echo "<p>No products available</p>";
+            }
+            ?>
+
+        </div>
+
+    </div>
 
 </body>
 
