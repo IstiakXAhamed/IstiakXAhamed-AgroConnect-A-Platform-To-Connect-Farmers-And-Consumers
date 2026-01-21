@@ -1,4 +1,4 @@
-/* Login Page - Simple & Clean (Under 100 lines) */
+/* Login Page */
 
 .login-body {
     margin: 0;
@@ -6,6 +6,7 @@
     font-family: Arial, sans-serif;
     min-height: 100vh;
     display: flex;
+    background-color: #FFF8E7;  
 }
 
 .login-container {
