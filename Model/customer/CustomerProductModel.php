@@ -128,7 +128,7 @@ function searchProducts($keyword)
 }
 
 
-// 6. ADD TO CART
+// 6. ADD TO CART (For Customer)
 
 // Customer cart e product add korbe
 function addToCart($customerId, $productId, $quantity)
