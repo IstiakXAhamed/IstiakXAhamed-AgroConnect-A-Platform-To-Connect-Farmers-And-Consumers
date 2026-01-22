@@ -42,7 +42,7 @@
             document.getElementById("keyword").value = suggestion;
 
             // Result clear kori
-            document.getElementById("result").innerHTML = "<span style='color:#27ae60;'>✓ Filtering by: " + suggestion + "</span>";
+            document.getElementById("result").innerHTML = "<span style='color:#27ae60;'> Filtering by: " + suggestion + "</span>";
 
             // Products filter kori
             filterProducts(searchTerm);

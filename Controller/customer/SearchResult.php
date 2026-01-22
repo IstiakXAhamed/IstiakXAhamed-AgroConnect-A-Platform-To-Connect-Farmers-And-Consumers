@@ -131,7 +131,7 @@ if ($suggestion != "") {
     // suggestion click korle filterProducts() call hobe
     echo "<span class='suggestion-item' onclick=\"selectSuggestion('$suggestion')\" 
           style='cursor:pointer; background:#e8f5e9; padding:5px 10px; border-radius:5px;'>
-          👉 $suggestion (Click to filter)
+          FILTER BY: $suggestion (Click to filter)
           </span>";
 } else {
     echo "<span style='color:#999;'>No suggestion found</span>";
