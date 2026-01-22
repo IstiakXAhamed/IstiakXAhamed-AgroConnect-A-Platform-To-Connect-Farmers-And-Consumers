@@ -43,7 +43,7 @@
                     <td><?php echo $order['created_at']; ?></td>
                     <td>
                         <?php if ($order['status'] === 'approved'): ?>
-                            <form action="confirmReceivedController.php" method="POST" style="display:inline;">
+                            <form action="../../Controller/customer/confirmReceivedController.php" method="POST" style="display:inline;">
                                 <input type="hidden" name="orderId" value="<?php echo $order['id']; ?>">
                                 <button type="submit" class="btn-cart" onclick="return confirm('Confirm you received this order?')">
                                     ✓ Mark as Received

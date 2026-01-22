@@ -75,7 +75,7 @@
                 <div style="margin-top:20px; text-align:right;">
                     <h3>Total: <span class="revenue">৳<?php echo number_format($cartTotal, 2); ?></span></h3>
                     <br>
-                    <form action="checkoutController.php" method="POST">
+                    <form action="../../Controller/customer/checkoutController.php" method="POST">
                         <button type="submit" class="btn-cart" style="padding:12px 30px; font-size:16px;">
                             Proceed to Checkout
                         </button>

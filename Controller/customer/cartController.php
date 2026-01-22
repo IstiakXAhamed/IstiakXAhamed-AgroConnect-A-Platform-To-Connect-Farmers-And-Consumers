@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         addToCart($customerId, $productId, $quantity);
         header("Location: cartController.php?success=Added to cart");
-        exit;look at t
+        exit;
     }
 
     // Update quantity
