@@ -85,6 +85,11 @@ body {
     color: #333;
     margin-bottom: 8px;
 }
+.product-info .description {
+    font-size: 12px;
+    color: #888;
+    margin-bottom: 5px;
+}   
 
 .product-info .category {
     font-size: 12px;

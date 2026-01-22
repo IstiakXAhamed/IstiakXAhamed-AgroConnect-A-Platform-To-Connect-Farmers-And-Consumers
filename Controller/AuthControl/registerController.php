@@ -6,6 +6,8 @@ require_once __DIR__ . "/../../Model/auth/userModel.php";
 /*
     jodi POST request hoy, POST request → AJAX register attempt
 */
+
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $userName = $_POST['username'] ?? '';

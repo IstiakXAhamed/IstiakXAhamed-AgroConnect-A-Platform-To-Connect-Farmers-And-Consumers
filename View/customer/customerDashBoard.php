@@ -137,6 +137,7 @@
                         <!-- Product Info -->
                         <div class="product-info">
                             <h4><?php echo $product['product_name']; ?></h4>
+                            <p class="description"><?php echo $product['description'] ?></p>;
                             <p class="category"><?php echo $product['category_name'] ?? 'Uncategorized'; ?></p>
 
                             <p class="farmer">By: <?php echo $product['farmer_name']; ?></p>
