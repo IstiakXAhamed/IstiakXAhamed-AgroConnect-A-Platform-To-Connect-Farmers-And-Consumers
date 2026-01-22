@@ -23,7 +23,7 @@ if (!$stats) {
         "totalProducts" => "0",
         "totalOrders" => "0",
         "pendingOrders" => "0",
-        "totalRevenue" => "0"
+        "totalCommission" => "0"
     );
 }
 

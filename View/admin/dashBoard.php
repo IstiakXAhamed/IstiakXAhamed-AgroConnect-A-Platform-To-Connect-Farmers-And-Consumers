@@ -56,8 +56,8 @@
                 <div class="number"><?php echo $stats['totalOrders']; ?></div>
             </div>
             <div class="stat-card">
-                <h4>Total Revenue</h4>
-                <div class="number revenue"><?php echo $stats['totalRevenue']; ?> Tk</div>
+                <h4>Total Commission</h4>
+                <div class="number revenue"><?php echo number_format($stats['totalCommission'], 2); ?> Tk</div>
             </div>
         </div>
 
