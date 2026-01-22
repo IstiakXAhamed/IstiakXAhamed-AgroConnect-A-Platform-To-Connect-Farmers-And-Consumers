@@ -48,13 +48,22 @@ function getAdminDashboardStats()
     $result = mysqli_query($conn, "SELECT id FROM orders WHERE status='pending'");
     $data["pendingOrders"] = mysqli_num_rows($result);
 
-    // total revenue - sum of all order amounts
-    $result = mysqli_query($conn, "SELECT SUM(total_amount) as revenue FROM orders");
+    // total commission earned by admin from COMPLETED orders only
+    // Step 1: Get commission rate from platform_commission table
+    $commissionRate = 10; // Default 10% if not set
+    $commRateResult = mysqli_query($conn, "SELECT farmer_commission FROM platform_commission LIMIT 1");
+    if ($commRateResult && $commRateRow = mysqli_fetch_assoc($commRateResult)) {
+        $commissionRate = $commRateRow['farmer_commission'];
+    }
+
+    // Step 2: Calculate total commission from completed orders
+    $result = mysqli_query($conn, "SELECT SUM(total_amount) as totalSales FROM orders WHERE status = 'completed'");
     $row = mysqli_fetch_assoc($result);
-    if ($row['revenue']) {
-        $data["totalRevenue"] = $row['revenue'];
+    if ($row['totalSales']) {
+        // Commission = Total Sales * (Commission Rate / 100)
+        $data["totalCommission"] = round($row['totalSales'] * ($commissionRate / 100), 2);
     } else {
-        $data["totalRevenue"] = 0;
+        $data["totalCommission"] = 0;
     }
 
     return $data;

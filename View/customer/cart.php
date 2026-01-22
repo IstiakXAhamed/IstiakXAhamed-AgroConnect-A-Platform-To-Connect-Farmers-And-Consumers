@@ -21,15 +21,13 @@
 
     <div class="main-content">
 
-        <?php if (isset($_GET['success'])): ?>
-            <div class="success-msg"><?php echo $_GET['success']; ?></div>
-        <?php endif; ?>
+
 
         <div class="section">
             <h3>Cart Items</h3>
 
-            <?php if ($cartItems && mysqli_num_rows($cartItems) > 0): ?>
-                <table>
+            <?php if ($cartItems && mysqli_num_rows($cartItems) > 0):
+                echo "<table>
                     <tr>
                         <th>Image</th>
                         <th>Product</th>
@@ -39,14 +37,15 @@
                         <th>Total</th>
                         <th>Action</th>
                     </tr>
-                    <?php
-                    while ($item = mysqli_fetch_assoc($cartItems)) {
-                        $img = ($item['image'] != "")
-                            ? "<img src='../../{$item['image']}' width='50'>"
-                            : "No image";
-                        $itemTotal = $item['price'] * $item['cart_quantity'];
+                    ";
+                while ($item = mysqli_fetch_assoc($cartItems)) {
 
-                        echo "<tr>
+                    $img = ($item['image'] != "")
+                        ? "<img src='../../{$item['image']}' width='50'>"
+                        : "No image";
+                    $itemTotal = $item['price'] * $item['cart_quantity'];
+
+                    echo "<tr>
                             <td>{$img}</td>
                             <td>{$item['product_name']}</td>
                             <td>{$item['farmer_name']}</td>
@@ -68,8 +67,8 @@
                                 </form>
                             </td>
                         </tr>";
-                    }
-                    ?>
+                }
+            ?>
                 </table>
 
                 <!-- Cart Total -->

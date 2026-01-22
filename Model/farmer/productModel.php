@@ -19,7 +19,7 @@ function addProduct($farmerId, $name, $price, $quantity, $image, $description, $
         return false;
     }
     $sql = "INSERT INTO products (farmer_id, name, price, quantity, image, description, category_id, status, created_at)
-    VALUES ($farmerId, '$name', $price, $quantity, '$image', '$description', $categoryId, 0, NOW())";
+    VALUES ($farmerId, '$name', $price, $quantity, '$image', '$description', $categoryId, 1, NOW())";
     return mysqli_query($conn, $sql);
 }
 
